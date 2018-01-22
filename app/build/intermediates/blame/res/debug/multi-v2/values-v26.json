@@ -4,7 +4,7 @@
             "outputFile": "/Users/taipower/AndroidProject/LoginDemo/app/build/intermediates/incremental/mergeDebugResources/merged.dir/values-v26/values-v26.xml",
             "map": [
                 {
-                    "source": "/Users/taipower/.gradle/caches/transforms-1/files-1.1/appcompat-v7-26.1.0.aar/dcea8002c3abbbbf44af662dcaff0474/res/values-v26/values-v26.xml",
+                    "source": "/Users/taipower/.gradle/caches/transforms-1/files-1.1/appcompat-v7-26.1.0.aar/f0e2b1f7fded6513ca6aeba78f72b7d7/res/values-v26/values-v26.xml",
                     "from": {
                         "startLines": "2,3,4,8,12,16",
                         "startColumns": "4,4,4,4,4,4",
@@ -23,7 +23,7 @@
                     }
                 },
                 {
-                    "source": "/Users/taipower/.gradle/caches/transforms-1/files-1.1/design-26.1.0.aar/260679173a224f05271f39c8775858ce/res/values-v26/values-v26.xml",
+                    "source": "/Users/taipower/.gradle/caches/transforms-1/files-1.1/design-26.1.0.aar/b6ab8e18c8411cea3ef003204111b99e/res/values-v26/values-v26.xml",
                     "from": {
                         "startLines": "2,6",
                         "startColumns": "4,4",
