@@ -58,6 +58,7 @@ class LoginActivity : AppCompatActivity(), LoaderCallbacks<Cursor> {
             return
         }
 
+
         loaderManager.initLoader(0, null, this)
     }
 
