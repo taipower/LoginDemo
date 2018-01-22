@@ -4,7 +4,7 @@
             "outputFile": "/Users/taipower/AndroidProject/LoginDemo/app/build/intermediates/incremental/mergeDebugResources/merged.dir/values-ldltr-v21/values-ldltr-v21.xml",
             "map": [
                 {
-                    "source": "/Users/taipower/.gradle/caches/transforms-1/files-1.1/appcompat-v7-26.1.0.aar/dcea8002c3abbbbf44af662dcaff0474/res/values-ldltr-v21/values-ldltr-v21.xml",
+                    "source": "/Users/taipower/.gradle/caches/transforms-1/files-1.1/appcompat-v7-26.1.0.aar/f0e2b1f7fded6513ca6aeba78f72b7d7/res/values-ldltr-v21/values-ldltr-v21.xml",
                     "from": {
                         "startLines": "2",
                         "startColumns": "4",

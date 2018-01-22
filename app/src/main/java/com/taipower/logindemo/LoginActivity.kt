@@ -17,9 +17,6 @@ import android.os.Bundle
 import android.provider.ContactsContract
 import android.text.TextUtils
 import android.view.View
-import android.view.inputmethod.EditorInfo
-import android.widget.ArrayAdapter
-import android.widget.TextView
 
 import java.util.ArrayList
 import android.Manifest.permission.READ_CONTACTS
@@ -40,15 +37,6 @@ class LoginActivity : AppCompatActivity(), LoaderCallbacks<Cursor> {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_login)
-        // Set up the login form.
-        //populateAutoComplete()
-//        password.setOnEditorActionListener(TextView.OnEditorActionListener { _, id, _ ->
-//            if (id == EditorInfo.IME_ACTION_DONE || id == EditorInfo.IME_NULL) {
-//                attemptLogin()
-//                return@OnEditorActionListener true
-//            }
-//            false
-//        })
 
         email_sign_in_button.setOnClickListener { attemptLogin() }
     }
@@ -58,7 +46,6 @@ class LoginActivity : AppCompatActivity(), LoaderCallbacks<Cursor> {
             return
         }
 
-
         loaderManager.initLoader(0, null, this)
     }
 
@@ -66,9 +53,11 @@ class LoginActivity : AppCompatActivity(), LoaderCallbacks<Cursor> {
         if (Build.VERSION.SDK_INT < Build.VERSION_CODES.M) {
             return true
         }
+
         if (checkSelfPermission(READ_CONTACTS) == PackageManager.PERMISSION_GRANTED) {
             return true
         }
+
         if (shouldShowRequestPermissionRationale(READ_CONTACTS)) {
             Snackbar.make(email, R.string.permission_rationale, Snackbar.LENGTH_INDEFINITE)
                     .setAction(android.R.string.ok,
@@ -76,6 +65,7 @@ class LoginActivity : AppCompatActivity(), LoaderCallbacks<Cursor> {
         } else {
             requestPermissions(arrayOf(READ_CONTACTS), REQUEST_READ_CONTACTS)
         }
+
         return false
     }
 
@@ -114,23 +104,17 @@ class LoginActivity : AppCompatActivity(), LoaderCallbacks<Cursor> {
         var focusView: View? = null
 
         // Check for a valid password, if the user entered one.
-        if (!TextUtils.isEmpty(passwordStr) && !isPasswordValid(passwordStr)) {
-//            password.error = getString(R.string.error_invalid_password)
-//            focusView = password
+        if (!TextUtils.isEmpty(passwordStr) && !Login.isPasswordValid(passwordStr)) {
             showSimpleAlert(getString(R.string.error_invalid_password))
             cancel = true
         }
 
         // Check for a valid email address.
         if (TextUtils.isEmpty(emailStr)) {
-//            email.error = getString(R.string.error_field_required)
             showSimpleAlert(getString(R.string.error_field_required))
-//            focusView = email
             cancel = true
-        } else if (!isEmailValid(emailStr)) {
-//            email.error = getString(R.string.error_invalid_email)
+        } else if (!Login.isEmailValid(emailStr)) {
             showSimpleAlert(getString(R.string.error_invalid_email))
-//            focusView = email
             cancel = true
         }
 
@@ -145,16 +129,6 @@ class LoginActivity : AppCompatActivity(), LoaderCallbacks<Cursor> {
             mAuthTask = UserLoginTask(emailStr, passwordStr)
             mAuthTask!!.execute(null as Void?)
         }
-    }
-
-    private fun isEmailValid(email: String): Boolean {
-        //TODO: Replace this with your own logic
-        return email.contains("@")
-    }
-
-    private fun isPasswordValid(password: String): Boolean {
-        //TODO: Replace this with your own logic
-        return password.length > 4
     }
 
     /**
@@ -217,20 +191,10 @@ class LoginActivity : AppCompatActivity(), LoaderCallbacks<Cursor> {
             emails.add(cursor.getString(ProfileQuery.ADDRESS))
             cursor.moveToNext()
         }
-
-        addEmailsToAutoComplete(emails)
     }
 
     override fun onLoaderReset(cursorLoader: Loader<Cursor>) {
 
-    }
-
-    private fun addEmailsToAutoComplete(emailAddressCollection: List<String>) {
-        //Create adapter to tell the AutoCompleteTextView what to show in its dropdown list.
-        val adapter = ArrayAdapter(this@LoginActivity,
-                android.R.layout.simple_dropdown_item_1line, emailAddressCollection)
-
-//        email.setAdapter(adapter)
     }
 
     object ProfileQuery {
@@ -259,20 +223,11 @@ class LoginActivity : AppCompatActivity(), LoaderCallbacks<Cursor> {
 
             var result = false
 
-            if(mEmail == "foo@example.com" && mPassword == "hellojaa"){
+            if(Login.authorize(mEmail,mPassword)){
                 result = true
             }
 
             return result
-
-//            return DUMMY_CREDENTIALS
-//                    .map { it.split(":") }
-//                    .firstOrNull { it[0] == mEmail }
-//                    ?.let {
-//                        // Account exists, return true if the password matches.
-//                        it[1] == mPassword
-//                    }
-//                    ?: true
         }
 
         override fun onPostExecute(success: Boolean?) {
@@ -287,8 +242,6 @@ class LoginActivity : AppCompatActivity(), LoaderCallbacks<Cursor> {
             } else {
                 val alert = "Please check email or password."
                 showSimpleAlert(alert)
-//                password.error = getString(R.string.error_incorrect_password)
-//                password.requestFocus()
             }
         }
 

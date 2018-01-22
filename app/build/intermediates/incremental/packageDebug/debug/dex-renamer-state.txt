@@ -1,4 +1,4 @@
-#Tue Nov 21 22:17:28 ICT 2017
+#Mon Jan 22 14:23:05 ICT 2018
 base.0=/Users/taipower/AndroidProject/LoginDemo/app/build/intermediates/transforms/dexMerger/debug/19
+path.0=classes.dex
 renamed.0=classes.dex
-file.0=/Users/taipower/AndroidProject/LoginDemo/app/build/intermediates/transforms/dexMerger/debug/19/classes.dex
